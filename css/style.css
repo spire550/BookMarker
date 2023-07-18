@@ -1,0 +1,67 @@
+.main-color {
+    background-color: #F7ECDE ;;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+font-size: 50px;
+line-height:60px ;
+margin:0px 0px 8px ;
+padding:8px 0px ;
+font-weight: 500;
+
+
+}
+
+h2 {
+    border-top: 1px dashed #000;
+    padding-top: 30px ;
+    font-family: "Righteous", cursive;
+    font-size: 25px;
+    background-image: linear-gradient(to right, #3ca55c, #b5ac49);
+    -webkit-background-clip: text;
+    font-weight: bold;
+    -webkit-text-fill-color: transparent;
+}
+
+hr {
+    border:  1px dashed #000;
+}
+
+#add {
+    background-image: linear-gradient(to right, #3c43a5, #c02f2f);
+    font-weight: bold;
+    border: 1px solid #3ca55c;
+    color: #fff;
+}
+.swal2-confirm{
+    margin: 20px !important;
+}
+
+.Bookmark {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+}
+
+.Bookmark::before {
+    
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    left: 0;
+    bottom: 10px;
+    background-color: #fec260;
+    transition: height 350ms;
+    z-index: -1;
+}
+
+.Bookmark:hover::before {
+    height: 50%;
+}
+
+span{
+    color: goldenrod;
+    font-weight: bold;
+   }

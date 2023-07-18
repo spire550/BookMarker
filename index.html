@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>BookMark</title>
+  </head>
+  <body class="main-color">
+    <h1 class="text-center mt-5 Bookmark">Bookmarker</h1>
+    <div class="container my-5">
+      <h2 class="text-center">
+        <i class="fa-solid fa-bookmark text-danger"></i> Bookmark your favorite
+        sites <i class="text-danger fa-solid fa-bookmark"></i>
+      </h2>
+      <div class="form-group mt-5">
+        <label for="todo" class="fw-bold my-3">
+          <i class="fa-solid fa-book-bookmark pe-2"></i> Site Name</label
+        >
+        <input
+          type="text"
+          class="form-control w-100 p-2 d-inline"
+          placeholder="Bookmark Name"
+          name="todo"
+          id="SiteName"
+        />
+        <p class="feedback text-danger pt-3 fs-6 fw-bold" id="feedback"></p>
+        <label for="todo" class="my-3 fw-bold"
+          ><i class="fa-solid fa-link pe-2"></i> Site URL</label
+        >
+        <input
+          type="text"
+          class="form-control w-100 p-2 d-inline"
+          placeholder="Website URL"
+          name="todo"
+          id="URL"
+        />
+        <p class="feedback text-danger pt-3 fs-6 fw-bold" id="urlfeedback"></p>
+        <button id="add" class="btn fw-semibold px-5 mx-auto d-block my-5 fs-5">
+          Submit
+        </button>
+      </div>
+      <hr />
+
+      
+      <table class="table table-striped mt-5 text-center">
+        <thead>
+          <tr class="fs-5">
+            <th scope="col">Index</th>
+            <th scope="col">Site Name</th>
+            <th scope="col">Visit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+  </body>
+</html>
