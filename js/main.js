@@ -3,7 +3,6 @@ var urlName = document.getElementById("URL");
 var addBtn = document.getElementById("add");
 var tbody = document.getElementById("tbody");
 
-
 addBtn.addEventListener("click", () => {
   addTask();
 });
@@ -19,7 +18,7 @@ if (localStorage.getItem("task") != null) {
 }
 
 function addTask() {
-  if (checkSiteName() && siteUrlRegex() == true) {
+  if (nameRegex() && checkSiteName() && siteUrlRegex() == true) {
     var item = {
       name: SiteName.value,
       url: urlName.value,
@@ -67,27 +66,35 @@ function deletTask(index) {
 function visit(index) {
   for (var i = 0; i < SiteList.length; i++) {
     var url = `${SiteList[index].url}`;
-    location.assign(url);
+    window.open(url);
   }
 }
 
 // validation for url and repeat sites
+function nameRegex() {
+  var namereg = /^[A-Z a-z]{3,15}$/;
+  return namereg.test(SiteName.value);
+}
 
 function siteUrlRegex() {
-  var urlsRe = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/ig;
+  var urlsRegex =
+    /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
 
-  return urlsRe.test(urlName.value);
+  return urlsRegex.test(urlName.value);
 }
 
 function notValidation() {
-  if (SiteName.value == "") {
-   failname();
+  if (!nameRegex()) {
+    if (SiteName.value == "") {
+      failname();
+    } else {
+      failregname();
+    }
   } else if (!siteUrlRegex()) {
     if (urlName.value == "") {
-     failurl();
+      failurl();
     } else {
-      
-       failurlvalid();
+      failurlvalid();
     }
   } else if (!checkSiteName()) {
     repeted();
@@ -122,62 +129,68 @@ function success() {
 }
 
 function failname() {
-    swal.fire({
-      icon: "error",
-      title: "Oops!",
-      text: "Please Enter the Site Name",
-    });
-  }
+  swal.fire({
+    icon: "error",
+    title: "Oops!",
+    text: "Please Enter the Site Name",
+  });
+}
+function failregname() {
+  swal.fire({
+    icon: "error",
+    title: "Oops!",
+    text: "Site name must contain at least 3 letters to 15 letters ",
+  });
+}
 
-  function failurl() {
-    swal.fire({
-      icon: "error",
-      title: "Oops!",
-      text: "Please Enter the URL",
-    });
-  }
-  function failurlvalid() {
-    swal.fire({
-      icon: "error",
-      title: "Oops!",
-      text: "InValid SiteName , please Make Sure The URL like https://www.google.com",
-      
-    });
-  }
+function failurl() {
+  swal.fire({
+    icon: "error",
+    title: "Oops!",
+    text: "Please Enter the URL",
+  });
+}
+function failurlvalid() {
+  swal.fire({
+    icon: "error",
+    title: "Oops!",
+    text: "InValid SiteName , please Make Sure The URL like https://www.google.com",
+  });
+}
 
-function testtt(){
+function testtt() {
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
-      confirmButton: 'btn btn-success',
-      cancelButton: 'btn btn-danger',
-      
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger",
     },
-    buttonsStyling: false
-  })
-  
-  swalWithBootstrapButtons.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    cancelButtonText: 'No, cancel!',
-    reverseButtons: true
-  }).then((result) => {
-    if (result.isConfirmed) {
-      swalWithBootstrapButtons.fire(
-        'Deleted!',
-        'Your file has been deleted.',
-        'success'
-      )
-      deletTask();
-    } else if (
-      result.dismiss === Swal.DismissReason.cancel
-    ) {
-      swalWithBootstrapButtons.fire(
-        'Cancelled',
-        'Your Site still in bookmarker :)',
-        'error'
-      )
-    }
-  })}
+    buttonsStyling: false,
+  });
+
+  swalWithBootstrapButtons
+    .fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          "Deleted!",
+          "Your file has been deleted.",
+          "success"
+        );
+        deletTask();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        swalWithBootstrapButtons.fire(
+          "Cancelled",
+          "Your Site still in bookmarker :)",
+          "error"
+        );
+      }
+    });
+}
