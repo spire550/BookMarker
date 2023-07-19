@@ -181,7 +181,7 @@ function testtt() {
       if (result.isConfirmed) {
         swalWithBootstrapButtons.fire(
           "Deleted!",
-          "Your file has been deleted.",
+          "Your WebSite has been deleted.",
           "success"
         );
         deletTask();
